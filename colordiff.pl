@@ -2,7 +2,7 @@
 
 ########################################################################
 #                                                                      #
-# ColorDiff - a wrapper/replacment for 'diff' producing                #
+# ColorDiff - a wrapper/replacement for 'diff' producing               #
 #             colourful output                                         #
 #                                                                      #
 # Copyright (C)2002-2013 Dave Ewart (davee@sungate.co.uk)              #
