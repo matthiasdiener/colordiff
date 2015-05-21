@@ -93,6 +93,12 @@ colordiffrc-lightbg
     Alternate configuration template for use with terminals having light
     backgrounds. Copy this to /etc/colordiffrc or ~/.colordiffrc and customize.
 
+colordiffrc-gitdiff
+
+    Alternate configuration template for use with terminals having dark
+    backgrounds, with colour defaults set to match the output of 'git diff'.
+    Copy this to /etc/colordiffrc or ~/.colordiffrc and customize.
+
 Bugs
 
 Bug reports and suggestions/patches to <davee@sungate.co.uk> please.

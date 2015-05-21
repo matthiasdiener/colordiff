@@ -178,7 +178,11 @@ colordiff --fakeexitcode ...
   <varlistentry><term><filename>colordiffrc-lightbg</filename></term>
   <listitem><para>Alternate configuration template for use with terminals having
   light backgrounds.  Copy this to /etc/colordiffrc or ~/.colordiffrc and
-  customize.</para></listitem>
+  customize.</para></listitem></varlistentry>
+  <varlistentry><term><filename>colordiffrc-gitdiff</filename></term>
+  <listitem><para>Alternate configuration template for use with terminals having
+  dark backgrounds, with colour defaults set to match the output of 'git diff'.
+  Copy this to /etc/colordiffrc or ~/.colordiffrc and customize.</para></listitem>
 </varlistentry></variablelist>
 
 </refsect1>
