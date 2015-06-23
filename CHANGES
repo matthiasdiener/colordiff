@@ -123,5 +123,9 @@ Big improvements to side-by-side diff detection, thanks Peter Wu.  Additional
 colordiffrc example colour scheme file to match 'git diff'.  Misc fixes thanks
 to John Szakmeister, Matthew Wang.
 
+Changes between 1.0.14 and 1.0.15
+
+Missed gitdiff file from tarball, bumping version number for clarity.
+
 # vim: tw=72
 
