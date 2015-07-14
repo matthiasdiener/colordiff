@@ -166,8 +166,12 @@ GetOptions(
     "fakeexitcode" => \$enable_fakeexitcode,
     "difftype=s" => \$specified_difftype,
     "color=s" => \$color_mode
-    # TODO - check that specified type is valid, issue warning if not
 );
+
+$_ = $specified_difftype;
+if (defined $_ and not /^diff[cuy]?|(deb|w)diff$/) {
+    print STDERR "Invalid --difftype value\n";
+}
 
 if (defined $enable_verifymode) {
     # When in verify mode, to ensure consistent output we don't source
