@@ -308,16 +308,21 @@ if ($operating_methodology == 1) {
 # Input stream has been read - need to examine it
 # to determine type of diff we have.
 
-my $lastline;
+# $lastline is false if the input is EOF. If true, then either more data is
+# available, or the last read succeeded (and the next read may return EOF).
+# Initially assume that the input is not EOF (for obvious reasons).
+my $lastline = 1;
 my $record;
 
 if (defined $specified_difftype) {
     $diff_type = $specified_difftype;
     # diffy needs at least one line to look at
-    if ($diff_type eq 'diffy' and ($_ = <$inputhandle>)) {
-        push @inputstream, $_;
+    if ($diff_type eq 'diffy') {
+        if (defined($_ = <$inputhandle>)) {
+            push @inputstream, $_;
+        }
+        $lastline = $_;
     }
-    $lastline = $_;
 }
 else {
     # Detect diff type, diffy is permitted
