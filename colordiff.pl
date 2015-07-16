@@ -66,6 +66,12 @@ my $HOME   = $ENV{HOME};
 my $etcdir = '/etc';
 my ($setting, $value);
 my @config_files = ("$etcdir/colordiffrc");
+if ($ENV{XDG_CONFIG_HOME} ne '') {
+    push (@config_files, "$ENV{XDG_CONFIG_HOME}/colordiff/colordiffrc")
+}
+elsif (defined $ENV{HOME}) {
+    push (@config_files, "$ENV{HOME}/.config/colordiff/colordiffrc")
+}
 push (@config_files, "$ENV{HOME}/.colordiffrc") if (defined $ENV{HOME});
 my $config_file;
 my $diff_type = 'unknown';
