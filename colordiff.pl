@@ -66,7 +66,7 @@ my $HOME   = $ENV{HOME};
 my $etcdir = '/etc';
 my ($setting, $value);
 my @config_files = ("$etcdir/colordiffrc");
-if ($ENV{XDG_CONFIG_HOME} ne '') {
+if (defined $ENV{XDG_CONFIG_HOME} && $ENV{XDG_CONFIG_HOME} ne '') {
     push (@config_files, "$ENV{XDG_CONFIG_HOME}/colordiff/colordiffrc")
 }
 elsif (defined $ENV{HOME}) {
