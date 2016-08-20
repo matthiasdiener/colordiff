@@ -92,7 +92,7 @@ sub check_for_file_arguments {
     my $nonopts = 0;
     my $ddash = 0;
 
-    while (my $arg = shift) {
+    while (defined(my $arg = shift)) {
         if ($arg eq "--") {
             $ddash = 1;
             next;
