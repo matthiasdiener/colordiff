@@ -165,13 +165,15 @@ my $enable_verifymode;
 my $specified_difftype;
 my $enable_fakeexitcode;
 my $color_mode = "auto";
+my $color_term_output_only = "no";
 GetOptions(
     # --enable-verifymode option is for testing behaviour of colordiff
     # against standard test diffs
     "verifymode" => \$enable_verifymode,
     "fakeexitcode" => \$enable_fakeexitcode,
     "difftype=s" => \$specified_difftype,
-    "color=s" => \$color_mode
+    "color=s" => \$color_mode,
+    "color-term-output-only=s" => \$color_term_output_only
 );
 
 $_ = $specified_difftype;
@@ -278,7 +280,9 @@ if ($color_mode eq "yes") {
 # If output is to a file, switch off colours unless overriden by $color_patch.
 # Relates to http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=378563
 # Relates to http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=862878
-if (!$color_patch && (defined $color_patch || -f STDOUT)) {
+if ( (!$color_patch && (defined $color_patch || -f STDOUT)) ||
+     ($color_term_output_only && !-t STDOUT) )
+{
     $plain_text  = '';
     $file_old    = '';
     $file_new    = '';
