@@ -31,7 +31,7 @@ my $author_email = 'davee@sungate.co.uk';
 my $app_www      = 'http://www.colordiff.org/';
 my $copyright    = '(C)2002-2015';
 my $show_banner  = 1;
-my $color_patch  = 0;
+my $color_patch  = undef;
 my $diff_cmd     = "diff";
 
 # ANSI sequences for colours
@@ -210,6 +210,8 @@ foreach $config_file (@config_files) {
             if ($setting eq 'color_patches') {
                 if ($value eq 'yes') {
                     $color_patch = 1;
+                } elsif ($value eq 'no') {
+                    $color_patch = 0;
                 }
                 next;
             }
@@ -264,17 +266,19 @@ foreach $config_file (@config_files) {
     }
 }
 
-# --color=yes and --color=no will override the color_patches setting
+# --color=(yes|no|auto) will override the color_patches setting
 if ($color_mode eq "yes") {
     $color_patch = 1;
 } elsif ($color_mode eq "no") {
     $color_patch = 0;
+} elsif ($color_mode eq "auto") {
+    $color_patch = undef;
 }
 
-# If output is to a file, switch off colours, unless 'color_patch' is set,
-# which might be due to --color=no being specified
+# If output is to a file, switch off colours unless overriden by $color_patch.
 # Relates to http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=378563
-if ((-f STDOUT) && ($color_patch == 0)) {
+# Relates to http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=862878
+if (!$color_patch && (defined $color_patch || -f STDOUT)) {
     $plain_text  = '';
     $file_old    = '';
     $file_new    = '';
