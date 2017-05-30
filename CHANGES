@@ -132,5 +132,10 @@ Changes between 1.0.15 and 1.0.16
 Support for XDG_CONFIG_HOME (thanks Zhiming Wang), fewer deps for cdiff.sh and
 fixes for diffy and diff-type specification (thanks Peter Wu).
 
+Changes between 1.0.16 and 1.0.17
+
+Ensure --color=no is honoured where appropriate, add --color-term-output-only
+plus minor fixes.
+
 # vim: tw=72
 
