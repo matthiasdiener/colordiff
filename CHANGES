@@ -141,7 +141,9 @@ Changes between 1.0.17 and 1.0.18
 
 Fix regression which broke piping to less.
 
+Changes between 1.0.18 and 1.0.19
+
 Add 'difffile' color option, allowing more git-like coloring (separate color for
-header of each changed file).
+header of each changed file).  Thanks Geraint Edwards.
 
 # vim: tw=72
