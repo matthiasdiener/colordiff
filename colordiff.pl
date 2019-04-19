@@ -227,7 +227,16 @@ foreach $config_file (@config_files) {
             if (($value eq 'normal') || ($value eq 'none')) {
                 $value = 'off';
             }
-            if ($value =~ m/[0-9]+/ && $value >= 0 && $value <= 255) {
+            # Find full 24-bit colour spec string
+            if (( $value =~ m/^([01]);38;2;([0-9]+);([0-9]+);([0-9]+)$/) &&
+                    ($2 >= 0) && ($2 <= 255) &&
+                    ($3 >= 0) && ($3 <= 255) &&
+                    ($4 >= 0) && ($4 <= 255)
+                    ) {
+                $colourval = "\033[$1;38;2;$2;$3;$4m";
+            }
+            # 256 colour single value
+            elsif ($value =~ m/^[0-9]+$/ && $value >= 0 && $value <= 255) {
                 # Numeric color
                 if( $value < 8 ) {
                     $colourval = "\033[0;3${value}m";
