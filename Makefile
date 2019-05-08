@@ -1,6 +1,7 @@
 INSTALL_DIR?=/usr/local/bin
 MAN_DIR?=/usr/local/man/man1
 ETC_DIR?=/etc
+INSTALL?=install
 VERSION=$(shell egrep '^my .version' colordiff.pl |cut -f 2 -d "'")
 DIST_FILES=COPYING INSTALL Makefile README \
 	colordiff.pl colordiffrc colordiffrc-lightbg cdiff.sh BUGS CHANGES colordiff.1 \
@@ -21,23 +22,22 @@ doc: colordiff.xml cdiff.xml
 
 .PHONY: install
 install:
-	install -d ${DESTDIR}${INSTALL_DIR}
+	$(INSTALL) -d ${DESTDIR}${INSTALL_DIR}
 	sed -e "s%/etc%${ETC_DIR}%g" colordiff.pl > \
 	  ${DESTDIR}${INSTALL_DIR}/colordiff
 	chmod +x ${DESTDIR}${INSTALL_DIR}/colordiff
 	if [ ! -f ${DESTDIR}${INSTALL_DIR}/cdiff ] ; then \
-	  install cdiff.sh ${DESTDIR}${INSTALL_DIR}/cdiff; \
+	  $(INSTALL) cdiff.sh ${DESTDIR}${INSTALL_DIR}/cdiff; \
 	fi
-	install -Dm 644 colordiff.1 ${DESTDIR}${MAN_DIR}/colordiff.1
-	install -Dm 644 cdiff.1 ${DESTDIR}${MAN_DIR}/cdiff.1
+	$(INSTALL) -Dm 644 colordiff.1 ${DESTDIR}${MAN_DIR}/colordiff.1
+	$(INSTALL) -Dm 644 cdiff.1 ${DESTDIR}${MAN_DIR}/cdiff.1
 	if [ -f ${DESTDIR}${ETC_DIR}/colordiffrc ]; then \
 	  mv -f ${DESTDIR}${ETC_DIR}/colordiffrc \
 	    ${DESTDIR}${ETC_DIR}/colordiffrc.old; \
 	else \
-	  install -d ${DESTDIR}${ETC_DIR}; \
+	  $(INSTALL) -d ${DESTDIR}${ETC_DIR}; \
 	fi
 	cp colordiffrc ${DESTDIR}${ETC_DIR}/colordiffrc
-	-chown root.root ${DESTDIR}${ETC_DIR}/colordiffrc
 	chmod 644 ${DESTDIR}${ETC_DIR}/colordiffrc
 
 .PHONY: uninstall
