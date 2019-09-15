@@ -281,10 +281,10 @@ foreach $config_file (@config_files) {
     }
 }
 
-# --color=(yes|no|auto) will override the color_patches setting
-if ($color_mode eq "yes") {
+# --color=(yes|no|always|never|auto) will override the color_patches setting
+if ($color_mode eq "yes" || $color_mode eq "always") {
     $color_patch = 1;
-} elsif ($color_mode eq "no") {
+} elsif ($color_mode eq "no" || $color_mode eq "never") {
     $color_patch = 0;
 } elsif ($color_mode eq "auto") {
     $color_patch = undef;
