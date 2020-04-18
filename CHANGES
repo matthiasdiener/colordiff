@@ -144,6 +144,8 @@ Fix regression which broke piping to less.
 Changes between 1.0.18 and 1.0.19
 
 Add 'difffile' color option, allowing more git-like coloring (separate color for
-header of each changed file).  Thanks Geraint Edwards.
+header of each changed file).  Thanks Geraint Edwards.  Improved portability of
+Makefile, thanks Michael Osipov.  Provide support for 24-bit colour strings,
+thanks Stephen Wall.
 
 # vim: tw=72
