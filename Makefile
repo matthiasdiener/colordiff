@@ -29,8 +29,9 @@ install:
 	if [ ! -f ${DESTDIR}${INSTALL_DIR}/cdiff ] ; then \
 	  $(INSTALL) cdiff.sh ${DESTDIR}${INSTALL_DIR}/cdiff; \
 	fi
-	$(INSTALL) -Dm 644 colordiff.1 ${DESTDIR}${MAN_DIR}/colordiff.1
-	$(INSTALL) -Dm 644 cdiff.1 ${DESTDIR}${MAN_DIR}/cdiff.1
+	$(INSTALL) -d ${DESTDIR}${MAN_DIR}
+	$(INSTALL) -m 644 colordiff.1 ${DESTDIR}${MAN_DIR}/colordiff.1
+	$(INSTALL) -m 644 cdiff.1 ${DESTDIR}${MAN_DIR}/cdiff.1
 	if [ -f ${DESTDIR}${ETC_DIR}/colordiffrc ]; then \
 	  mv -f ${DESTDIR}${ETC_DIR}/colordiffrc \
 	    ${DESTDIR}${ETC_DIR}/colordiffrc.old; \
